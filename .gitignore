@@ -1,0 +1,12 @@
+# big logs from catboost (do NOT track)
+catboost_info/
+
+# data files
+*.csv
+*.xls
+*.xlsx
+
+# python / notebook junk
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
