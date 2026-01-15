@@ -28,9 +28,16 @@ function App() {
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}/`)
-      .then((res) => res.ok && setConnected(true))
-      .catch(() => setConnected(false));
+    const checkBackend = async () => {
+      try {
+        const res = await fetch(`${BACKEND_URL}/`);
+        if (res.ok) setConnected(true);
+      } catch {
+        setTimeout(checkBackend, 3000); // retry after 3s
+      }
+    };
+  
+    checkBackend();
   }, []);
 
   const handleChange = (index, value) => {
